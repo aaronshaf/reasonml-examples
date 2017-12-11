@@ -173,6 +173,10 @@ console.log(Pervasives.string_of_bool(List.exists((function (str) {
 
 console.log(Pervasives.string_of_bool(List.mem("a", listOfStrings)));
 
+console.log(Pervasives.string_of_bool(List.mem("z", listOfStrings)));
+
+console.log(Pervasives.string_of_bool(List.mem("z", listOfStrings)));
+
 var beginningIntState = 0;
 
 exports.listOfNumbers                        = listOfNumbers;
