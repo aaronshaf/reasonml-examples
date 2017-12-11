@@ -177,6 +177,30 @@ console.log(Pervasives.string_of_bool(List.mem("z", listOfStrings)));
 
 console.log(Pervasives.string_of_bool(List.mem("z", listOfStrings)));
 
+console.log(Pervasives.string_of_int(List.find((function (element) {
+                return +(element > 2);
+              }), listOfNumbers)));
+
+console.log($$Array.of_list(List.filter((function (element) {
+                  return +(element > 1);
+                }))(listOfNumbers)));
+
+console.log($$Array.of_list(List.find_all((function (element) {
+                  return +(element > 1);
+                }))(listOfNumbers)));
+
+var match = List.partition((function (element) {
+        return +(element > 1);
+      }), listOfNumbers);
+
+var notMatching = match[1];
+
+var matching = match[0];
+
+console.log($$Array.of_list(matching));
+
+console.log($$Array.of_list(notMatching));
+
 var beginningIntState = 0;
 
 exports.listOfNumbers                        = listOfNumbers;
@@ -190,4 +214,6 @@ exports.beginningIntState                    = beginningIntState;
 exports.beginningStringState                 = beginningStringState;
 exports.listOfCombinedStrings                = listOfCombinedStrings;
 exports.reversedListOfCombinedStrings        = reversedListOfCombinedStrings;
+exports.matching                             = matching;
+exports.notMatching                          = notMatching;
 /*  Not a pure module */

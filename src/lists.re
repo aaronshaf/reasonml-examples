@@ -197,4 +197,22 @@ listOfStrings |> List.mem("z") |> string_of_bool |> Js.log; /* false */
 
 /* Same as */
 Js.log(string_of_bool(List.mem("z", listOfStrings))); /* false */
+
 /* TODO: memq */
+/* find */
+listOfNumbers |> List.find((element) => element > 2) |> string_of_int |> Js.log; /* 3 */
+
+/* TODO: show exception */
+/* filter */
+listOfNumbers |> List.filter((element) => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
+
+/* find_all; same as filter */
+listOfNumbers |> List.find_all((element) => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
+
+/* partition; results in two lists, matching and not matching */
+let (matching, notMatching) =
+  listOfNumbers |> List.partition((element) => element > 1);
+
+matching |> Array.of_list |> Js.log; /* [ 2, 3 ] */
+
+notMatching |> Array.of_list |> Js.log; /* [ 1 ] */
