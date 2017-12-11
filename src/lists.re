@@ -1,12 +1,12 @@
 /* Lists can only have one type of element */
-let myListOfNumbers = [1, 2, 3];
+let listOfNumbers = [1, 2, 3];
 
 let listOfStrings = ["a", "b", "c"]; /* invalid: [1, '2', 3.4] */
 
 /* Add element to list by "prepending"
    This means adding an element to the beginning.
    This is super fast. */
-let anotherList = [0, ...myListOfNumbers];
+let anotherList = [0, ...listOfNumbers];
 
 /* list -> array (prettier when printed) */
 Js.log(listOfStrings |> Array.of_list); /* [ 'a', 'b', 'c' ] */
@@ -15,7 +15,7 @@ Js.log(listOfStrings |> Array.of_list); /* [ 'a', 'b', 'c' ] */
 Js.log(listOfStrings); /* [ 'a', [ 'b', [ 'c', 0 ] ] ] */
 
 /* Length of list */
-Js.log(List.length(myListOfNumbers) |> string_of_int); /* 3 */
+Js.log(List.length(listOfNumbers) |> string_of_int); /* 3 */
 
 /* Head of list */
 Js.log(List.hd(listOfStrings)); /* a */
@@ -97,7 +97,7 @@ Js.log(
   List.fold_left(
     (state, currentElement) => state + currentElement,
     beginningIntState,
-    myListOfNumbers
+    listOfNumbers
   )
 ); /* 6 */
 
@@ -111,3 +111,56 @@ Js.log(
     beginningStringState
   )
 ); /* cba */
+
+/* Iterate over two lists */
+List.iter2(
+  (string1, string2) => Js.log(string1 ++ ":" ++ string2),
+  listOfStrings,
+  otherListOfStrings
+); /*
+a:d
+b:e
+c:f
+*/
+
+/* Map over two lists */
+let listOfCombinedStrings =
+  List.map2(
+    (element1, element2) => element1 ++ ":" ++ element2,
+    listOfStrings,
+    otherListOfStrings
+  );
+
+Js.log(listOfCombinedStrings |> Array.of_list); /* [ 'a:d', 'b:e', 'c:f' ] */
+
+/* Reverse the result of a map over two lists; faster than List.rev(List.map2(list1, list2) */
+let reversedListOfCombinedStrings =
+  List.rev_map2(
+    (element1, element2) => element1 ++ ":" ++ element2,
+    listOfStrings,
+    otherListOfStrings
+  );
+
+Js.log(reversedListOfCombinedStrings |> Array.of_list); /* [ 'c:f', 'b:e', 'a:d' ]*/
+
+/* fold_left2 is a left reducer on two lists */
+Js.log(
+  List.fold_left2(
+    (state, currentElement1, currentElement2) =>
+      state ++ currentElement1 ++ currentElement2 ++ "-",
+    beginningStringState,
+    listOfStrings,
+    otherListOfStrings
+  )
+); /* ad-be-cf- */
+
+/* fold_right2 is a left reducer on two lists */
+Js.log(
+  List.fold_right2(
+    (currentElement1, currentElement2, state) =>
+      state ++ currentElement1 ++ currentElement2 ++ "-",
+    listOfStrings,
+    otherListOfStrings,
+    beginningStringState
+  )
+); /* cf-be-ad- */

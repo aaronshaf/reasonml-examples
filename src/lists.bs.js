@@ -5,7 +5,7 @@ var List       = require("bs-platform/lib/js/list.js");
 var $$Array    = require("bs-platform/lib/js/array.js");
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
 
-var myListOfNumbers = /* :: */[
+var listOfNumbers = /* :: */[
   1,
   /* :: */[
     2,
@@ -29,14 +29,14 @@ var listOfStrings = /* :: */[
 
 var anotherList = /* :: */[
   0,
-  myListOfNumbers
+  listOfNumbers
 ];
 
 console.log($$Array.of_list(listOfStrings));
 
 console.log(listOfStrings);
 
-console.log(Pervasives.string_of_int(List.length(myListOfNumbers)));
+console.log(Pervasives.string_of_int(List.length(listOfNumbers)));
 
 console.log(List.hd(listOfStrings));
 
@@ -107,7 +107,7 @@ console.log($$Array.of_list(reversedListOfStringsWithExclamation));
 
 console.log(List.fold_left((function (state, currentElement) {
             return state + currentElement | 0;
-          }), 0, myListOfNumbers));
+          }), 0, listOfNumbers));
 
 var beginningStringState = "";
 
@@ -115,9 +115,34 @@ console.log(List.fold_right((function (currentElement, state) {
             return state + currentElement;
           }), listOfStrings, beginningStringState));
 
+List.iter2((function (string1, string2) {
+        console.log(string1 + (":" + string2));
+        return /* () */0;
+      }), listOfStrings, otherListOfStrings);
+
+var listOfCombinedStrings = List.map2((function (element1, element2) {
+        return element1 + (":" + element2);
+      }), listOfStrings, otherListOfStrings);
+
+console.log($$Array.of_list(listOfCombinedStrings));
+
+var reversedListOfCombinedStrings = List.rev_map2((function (element1, element2) {
+        return element1 + (":" + element2);
+      }), listOfStrings, otherListOfStrings);
+
+console.log($$Array.of_list(reversedListOfCombinedStrings));
+
+console.log(List.fold_left2((function (state, currentElement1, currentElement2) {
+            return state + (currentElement1 + (currentElement2 + "-"));
+          }), beginningStringState, listOfStrings, otherListOfStrings));
+
+console.log(List.fold_right2((function (currentElement1, currentElement2, state) {
+            return state + (currentElement1 + (currentElement2 + "-"));
+          }), listOfStrings, otherListOfStrings, beginningStringState));
+
 var beginningIntState = 0;
 
-exports.myListOfNumbers                      = myListOfNumbers;
+exports.listOfNumbers                        = listOfNumbers;
 exports.listOfStrings                        = listOfStrings;
 exports.anotherList                          = anotherList;
 exports.otherListOfStrings                   = otherListOfStrings;
@@ -126,4 +151,6 @@ exports.listOfStringsWithExclamation         = listOfStringsWithExclamation$1;
 exports.reversedListOfStringsWithExclamation = reversedListOfStringsWithExclamation;
 exports.beginningIntState                    = beginningIntState;
 exports.beginningStringState                 = beginningStringState;
+exports.listOfCombinedStrings                = listOfCombinedStrings;
+exports.reversedListOfCombinedStrings        = reversedListOfCombinedStrings;
 /*  Not a pure module */
