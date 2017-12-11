@@ -27,7 +27,7 @@ Js.log(List.tl(myListOfStrings) |> Array.of_list); /* [ 'b', 'c' ] */
 Js.log(List.nth(myListOfStrings, 1)); /* b */
 
 /* reverse a list */
-Js.log(List.rev(myListOfStrings) |> Array.of_list); /* [ 'c', 'b', 'a' ] ... */
+Js.log(List.rev(myListOfStrings) |> Array.of_list); /* [ 'c', 'b', 'a' ] */
 
 let myOtherListOfStrings = ["d", "e", "f"];
 
