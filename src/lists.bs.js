@@ -82,19 +82,27 @@ List.iter((function (element) {
         return /* () */0;
       }), listOfStrings);
 
-console.log("---");
-
-console.log($$Array.of_list(listOfStrings));
-
 List.iteri((function (index, string) {
-        console.log(index);
-        console.log(string);
+        console.log(Pervasives.string_of_int(index) + (" " + string));
         return /* () */0;
       }), listOfStrings);
 
-exports.myListOfNumbers    = myListOfNumbers;
-exports.listOfStrings      = listOfStrings;
-exports.anotherList        = anotherList;
-exports.otherListOfStrings = otherListOfStrings;
-exports.listOfLists        = listOfLists;
+var listOfStringsWithExclamation = List.map((function (element) {
+        return element + "!";
+      }), listOfStrings);
+
+console.log($$Array.of_list(listOfStringsWithExclamation));
+
+var listOfStringsWithExclamation$1 = List.mapi((function (index, element) {
+        return Pervasives.string_of_int(index) + (": " + element);
+      }), listOfStrings);
+
+console.log($$Array.of_list(listOfStringsWithExclamation$1));
+
+exports.myListOfNumbers              = myListOfNumbers;
+exports.listOfStrings                = listOfStrings;
+exports.anotherList                  = anotherList;
+exports.otherListOfStrings           = otherListOfStrings;
+exports.listOfLists                  = listOfLists;
+exports.listOfStringsWithExclamation = listOfStringsWithExclamation$1;
 /*  Not a pure module */

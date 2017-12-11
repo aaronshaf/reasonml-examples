@@ -53,17 +53,32 @@ Js.log(List.flatten(listOfLists) |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e'
 /* ## Iterators
  */
 /* Iterate over list */
-List.iter((element) => Js.log(element), listOfStrings);
-
-Js.log("---");
-
-Js.log(listOfStrings |> Array.of_list);
+List.iter((element) => Js.log(element), listOfStrings); /* a
+b
+c
+*/
 
 /* Iterate over list with (index, value) */
 List.iteri(
-  (index, string) => {
-    Js.log(index);
-    Js.log(string)
-  },
+  (index, string) => Js.log(string_of_int(index) ++ " " ++ string),
   listOfStrings
-);
+); /*
+ 0 a
+ 1 b
+ 2 c
+  */
+
+/* Map over list */
+let listOfStringsWithExclamation =
+  List.map((element) => element ++ "!", listOfStrings);
+
+Js.log(listOfStringsWithExclamation |> Array.of_list); /* [ 'a!', 'b!', 'c!' ] */
+
+/* Map over list with index */
+let listOfStringsWithExclamation =
+  List.mapi(
+    (index, element) => string_of_int(index) ++ ": " ++ element,
+    listOfStrings
+  );
+
+Js.log(listOfStringsWithExclamation |> Array.of_list); /* [ '0: a', '1: b', '2: c' ] */
