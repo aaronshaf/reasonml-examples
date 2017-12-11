@@ -9,10 +9,16 @@ let listOfStrings = ["a", "b", "c"]; /* invalid: [1, '2', 3.4] */
 let anotherList = [0, ...listOfNumbers];
 
 /* list -> array (prettier when printed) */
-Js.log(listOfStrings |> Array.of_list); /* [ 'a', 'b', 'c' ] */
+listOfStrings |> Array.of_list |> Js.log; /* [ 'a', 'b', 'c' ] */
+
+/* Same as */
+Js.log(Array.of_list(listOfStrings));
 
 /* Lists are "singly linked lists" */
 Js.log(listOfStrings); /* [ 'a', [ 'b', [ 'c', 0 ] ] ] */
+
+/* Same as */
+listOfStrings |> Js.log;
 
 /* Length of list */
 Js.log(List.length(listOfNumbers) |> string_of_int); /* 3 */
@@ -47,6 +53,8 @@ let listOfLists = [listOfStrings, otherListOfStrings];
 /* Concatenate a list of lists */
 Js.log(List.concat(listOfLists) |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e', 'f' ] */
 
+Js.log(listOfLists |> List.concat |> Array.of_list);
+
 /* List.flatten is the same as List.concat */
 Js.log(List.flatten(listOfLists) |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e', 'f' ] */
 
@@ -58,6 +66,8 @@ a
 b
 c
 */
+
+listOfStrings |> List.iter((element) => Js.log(element));
 
 /* Iterate over list with (index, value) */
 List.iteri(
@@ -166,4 +176,14 @@ Js.log(
 ); /* cf-be-ad- */
 
 /* for_all; compare Array.prototype.every */
-Js.log(List.for_all((str) => str === "a", listOfStrings));
+Js.log(List.for_all((str) => str === "a", listOfStrings) |> string_of_bool); /* false */
+
+Js.log(listOfStrings |> List.for_all((str) => str === "a")); /* false */
+
+Js.log(List.for_all((str) => str !== "d", listOfStrings) |> string_of_bool); /* true */
+
+/* exists: compare Array.prototype.some */
+listOfStrings |> List.exists((str) => str === "a") |> string_of_bool |> Js.log; /* true */
+
+/* Same as */
+Js.log(string_of_bool(List.exists((str) => str === "a", listOfStrings)));

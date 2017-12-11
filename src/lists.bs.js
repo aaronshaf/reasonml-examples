@@ -34,6 +34,10 @@ var anotherList = /* :: */[
 
 console.log($$Array.of_list(listOfStrings));
 
+console.log($$Array.of_list(listOfStrings));
+
+console.log(listOfStrings);
+
 console.log(listOfStrings);
 
 console.log(Pervasives.string_of_int(List.length(listOfNumbers)));
@@ -75,7 +79,14 @@ var listOfLists = /* :: */[
 
 console.log($$Array.of_list(List.concat(listOfLists)));
 
+console.log($$Array.of_list(List.concat(listOfLists)));
+
 console.log($$Array.of_list(List.flatten(listOfLists)));
+
+List.iter((function (element) {
+        console.log(element);
+        return /* () */0;
+      }), listOfStrings);
 
 List.iter((function (element) {
         console.log(element);
@@ -140,9 +151,25 @@ console.log(List.fold_right2((function (currentElement1, currentElement2, state)
             return state + (currentElement1 + (currentElement2 + "-"));
           }), listOfStrings, otherListOfStrings, beginningStringState));
 
+console.log(Pervasives.string_of_bool(List.for_all((function (str) {
+                return +(str === "a");
+              }), listOfStrings)));
+
 console.log(List.for_all((function (str) {
             return +(str === "a");
           }), listOfStrings));
+
+console.log(Pervasives.string_of_bool(List.for_all((function (str) {
+                return +(str !== "d");
+              }), listOfStrings)));
+
+console.log(Pervasives.string_of_bool(List.exists((function (str) {
+                return +(str === "a");
+              }), listOfStrings)));
+
+console.log(Pervasives.string_of_bool(List.exists((function (str) {
+                return +(str === "a");
+              }), listOfStrings)));
 
 var beginningIntState = 0;
 
