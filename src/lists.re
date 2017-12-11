@@ -164,3 +164,6 @@ Js.log(
     beginningStringState
   )
 ); /* cf-be-ad- */
+
+/* for_all; compare Array.prototype.every */
+Js.log(List.for_all((str) => str === "a", listOfStrings));

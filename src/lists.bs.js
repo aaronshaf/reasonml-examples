@@ -140,6 +140,10 @@ console.log(List.fold_right2((function (currentElement1, currentElement2, state)
             return state + (currentElement1 + (currentElement2 + "-"));
           }), listOfStrings, otherListOfStrings, beginningStringState));
 
+console.log(List.for_all((function (str) {
+            return +(str === "a");
+          }), listOfStrings));
+
 var beginningIntState = 0;
 
 exports.listOfNumbers                        = listOfNumbers;
