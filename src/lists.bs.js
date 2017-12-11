@@ -99,10 +99,31 @@ var listOfStringsWithExclamation$1 = List.mapi((function (index, element) {
 
 console.log($$Array.of_list(listOfStringsWithExclamation$1));
 
-exports.myListOfNumbers              = myListOfNumbers;
-exports.listOfStrings                = listOfStrings;
-exports.anotherList                  = anotherList;
-exports.otherListOfStrings           = otherListOfStrings;
-exports.listOfLists                  = listOfLists;
-exports.listOfStringsWithExclamation = listOfStringsWithExclamation$1;
+var reversedListOfStringsWithExclamation = List.rev_map((function (element) {
+        return element + "!";
+      }), listOfStrings);
+
+console.log($$Array.of_list(reversedListOfStringsWithExclamation));
+
+console.log(List.fold_left((function (state, currentElement) {
+            return state + currentElement | 0;
+          }), 0, myListOfNumbers));
+
+var beginningStringState = "";
+
+console.log(List.fold_right((function (currentElement, state) {
+            return state + currentElement;
+          }), listOfStrings, beginningStringState));
+
+var beginningIntState = 0;
+
+exports.myListOfNumbers                      = myListOfNumbers;
+exports.listOfStrings                        = listOfStrings;
+exports.anotherList                          = anotherList;
+exports.otherListOfStrings                   = otherListOfStrings;
+exports.listOfLists                          = listOfLists;
+exports.listOfStringsWithExclamation         = listOfStringsWithExclamation$1;
+exports.reversedListOfStringsWithExclamation = reversedListOfStringsWithExclamation;
+exports.beginningIntState                    = beginningIntState;
+exports.beginningStringState                 = beginningStringState;
 /*  Not a pure module */

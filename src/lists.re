@@ -37,7 +37,7 @@ Js.log(List.append(listOfStrings, otherListOfStrings) |> Array.of_list); /* [ 'a
 /* @ is the operator for catenating lists */
 Js.log(listOfStrings @ otherListOfStrings |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e', 'f' ] */
 
-/* Reverse first list and concatenate to second (faster than List.rev list1 @ list12) */
+/* Reverse first list and concatenate to second; faster than List.rev(list1 @ list12) */
 Js.log(
   List.rev_append(listOfStrings, otherListOfStrings) |> Array.of_list
 ); /* [ 'c', 'b', 'a', 'd', 'e', 'f' ] */
@@ -53,7 +53,8 @@ Js.log(List.flatten(listOfLists) |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e'
 /* ## Iterators
  */
 /* Iterate over list */
-List.iter((element) => Js.log(element), listOfStrings); /* a
+List.iter((element) => Js.log(element), listOfStrings); /*
+a
 b
 c
 */
@@ -82,3 +83,31 @@ let listOfStringsWithExclamation =
   );
 
 Js.log(listOfStringsWithExclamation |> Array.of_list); /* [ '0: a', '1: b', '2: c' ] */
+
+/* Map and reverse the result; faster than List.rev(List.map(list)) */
+let reversedListOfStringsWithExclamation =
+  List.rev_map((element) => element ++ "!", listOfStrings);
+
+Js.log(reversedListOfStringsWithExclamation |> Array.of_list); /* [ 'c!', 'b!', 'a!' ] */
+
+let beginningIntState = 0;
+
+/* fold_left is a left reducer; compare Array.prototype.reduce in JavaScript */
+Js.log(
+  List.fold_left(
+    (state, currentElement) => state + currentElement,
+    beginningIntState,
+    myListOfNumbers
+  )
+); /* 6 */
+
+let beginningStringState = "";
+
+/* fold_left is a left reducer; compare Array.prototype.reduceRight in JavaScript */
+Js.log(
+  List.fold_right(
+    (currentElement, state) => state ++ currentElement,
+    listOfStrings,
+    beginningStringState
+  )
+); /* cba */
