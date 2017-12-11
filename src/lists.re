@@ -188,8 +188,10 @@ listOfStrings |> List.exists((str) => str === "a") |> string_of_bool |> Js.log; 
 /* Same as */
 Js.log(string_of_bool(List.exists((str) => str === "a", listOfStrings)));
 
-/* TODO: for_all2 */
-/* TODO: exists2 */
+/* TODO: for_all2
+ */
+/* TODO: exists2
+ */
 /* mem; compare to Array.prototype.includes */
 listOfStrings |> List.mem("a") |> string_of_bool |> Js.log; /* true */
 
@@ -198,11 +200,13 @@ listOfStrings |> List.mem("z") |> string_of_bool |> Js.log; /* false */
 /* Same as */
 Js.log(string_of_bool(List.mem("z", listOfStrings))); /* false */
 
-/* TODO: memq */
+/* TODO: memq
+ */
 /* find */
 listOfNumbers |> List.find((element) => element > 2) |> string_of_int |> Js.log; /* 3 */
 
-/* TODO: show exception */
+/* TODO: show exception
+ */
 /* filter */
 listOfNumbers |> List.filter((element) => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
 
@@ -216,3 +220,5 @@ let (matching, notMatching) =
 matching |> Array.of_list |> Js.log; /* [ 2, 3 ] */
 
 notMatching |> Array.of_list |> Js.log; /* [ 1 ] */
+/*
+ TODO: Association lists, Lists of pairs, Sorting */
