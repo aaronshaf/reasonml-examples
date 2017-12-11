@@ -16,7 +16,7 @@ var myListOfNumbers = /* :: */[
   ]
 ];
 
-var myListOfStrings = /* :: */[
+var listOfStrings = /* :: */[
   "a",
   /* :: */[
     "b",
@@ -32,21 +32,21 @@ var anotherList = /* :: */[
   myListOfNumbers
 ];
 
-console.log($$Array.of_list(myListOfStrings));
+console.log($$Array.of_list(listOfStrings));
 
-console.log(myListOfStrings);
+console.log(listOfStrings);
 
 console.log(Pervasives.string_of_int(List.length(myListOfNumbers)));
 
-console.log(List.hd(myListOfStrings));
+console.log(List.hd(listOfStrings));
 
-console.log($$Array.of_list(List.tl(myListOfStrings)));
+console.log($$Array.of_list(List.tl(listOfStrings)));
 
-console.log(List.nth(myListOfStrings, 1));
+console.log(List.nth(listOfStrings, 1));
 
-console.log($$Array.of_list(List.rev(myListOfStrings)));
+console.log($$Array.of_list(List.rev(listOfStrings)));
 
-var myOtherListOfStrings = /* :: */[
+var otherListOfStrings = /* :: */[
   "d",
   /* :: */[
     "e",
@@ -57,19 +57,19 @@ var myOtherListOfStrings = /* :: */[
   ]
 ];
 
-console.log($$Array.of_list(List.append(myListOfStrings, myOtherListOfStrings)));
+console.log($$Array.of_list(List.append(listOfStrings, otherListOfStrings)));
 
-console.log($$Array.of_list(Pervasives.$at(myListOfStrings, myOtherListOfStrings)));
+console.log($$Array.of_list(Pervasives.$at(listOfStrings, otherListOfStrings)));
 
-console.log($$Array.of_list(List.rev_append(myListOfStrings, myOtherListOfStrings)));
+console.log($$Array.of_list(List.rev_append(listOfStrings, otherListOfStrings)));
 
 var listOfLists_001 = /* :: */[
-  myOtherListOfStrings,
+  otherListOfStrings,
   /* [] */0
 ];
 
 var listOfLists = /* :: */[
-  myListOfStrings,
+  listOfStrings,
   listOfLists_001
 ];
 
@@ -77,9 +77,24 @@ console.log($$Array.of_list(List.concat(listOfLists)));
 
 console.log($$Array.of_list(List.flatten(listOfLists)));
 
-exports.myListOfNumbers      = myListOfNumbers;
-exports.myListOfStrings      = myListOfStrings;
-exports.anotherList          = anotherList;
-exports.myOtherListOfStrings = myOtherListOfStrings;
-exports.listOfLists          = listOfLists;
+List.iter((function (element) {
+        console.log(element);
+        return /* () */0;
+      }), listOfStrings);
+
+console.log("---");
+
+console.log($$Array.of_list(listOfStrings));
+
+List.iteri((function (index, string) {
+        console.log(index);
+        console.log(string);
+        return /* () */0;
+      }), listOfStrings);
+
+exports.myListOfNumbers    = myListOfNumbers;
+exports.listOfStrings      = listOfStrings;
+exports.anotherList        = anotherList;
+exports.otherListOfStrings = otherListOfStrings;
+exports.listOfLists        = listOfLists;
 /*  Not a pure module */
