@@ -187,3 +187,8 @@ listOfStrings |> List.exists((str) => str === "a") |> string_of_bool |> Js.log; 
 
 /* Same as */
 Js.log(string_of_bool(List.exists((str) => str === "a", listOfStrings)));
+
+/* TODO: for_all2 */
+/* TODO: exists2 */
+/* mem; compare to Array.prototype.includes */
+listOfStrings |> List.mem("a") |> string_of_bool |> Js.log;
