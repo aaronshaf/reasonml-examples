@@ -2,9 +2,12 @@
 'use strict';
 
 var Module1$ReasonmlExamples = require("./module1.bs.js");
+var Module2$ReasonmlExamples = require("./subdir/module2.bs.js");
 
 console.log(Module1$ReasonmlExamples.authorName);
 
 console.log(Module1$ReasonmlExamples.authorName);
+
+console.log(Module2$ReasonmlExamples.authorName);
 
 /*  Not a pure module */
