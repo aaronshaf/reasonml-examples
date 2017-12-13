@@ -32,13 +32,13 @@ var anotherList = /* :: */[
   listOfNumbers
 ];
 
+console.log(listOfStrings);
+
 console.log($$Array.of_list(listOfStrings));
 
 console.log($$Array.of_list(listOfStrings));
 
-console.log(listOfStrings);
-
-console.log(listOfStrings);
+console.log($$Array.of_list(listOfStrings));
 
 console.log(Pervasives.string_of_int(List.length(listOfNumbers)));
 

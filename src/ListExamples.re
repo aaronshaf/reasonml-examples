@@ -3,10 +3,13 @@ let listOfNumbers = [1, 2, 3];
 
 let listOfStrings = ["a", "b", "c"]; /* invalid: [1, '2', 3.4] */
 
-/* Add element to list by "prepending"
+/* Add element to list by "prepending".
    This means adding an element to the beginning.
    This is super fast. */
 let anotherList = [0, ...listOfNumbers];
+
+/* Lists are "singly linked lists" */
+Js.log(listOfStrings); /* [ 'a', [ 'b', [ 'c', 0 ] ] ] */
 
 /* list -> array (prettier when printed) */
 listOfStrings |> Array.of_list |> Js.log; /* [ 'a', 'b', 'c' ] */
@@ -14,11 +17,8 @@ listOfStrings |> Array.of_list |> Js.log; /* [ 'a', 'b', 'c' ] */
 /* Same as */
 Js.log(Array.of_list(listOfStrings));
 
-/* Lists are "singly linked lists" */
-Js.log(listOfStrings); /* [ 'a', [ 'b', [ 'c', 0 ] ] ] */
-
 /* Same as */
-listOfStrings |> Js.log;
+listOfStrings |> Array.of_list |> Js.log;
 
 /* Length of list */
 Js.log(List.length(listOfNumbers) |> string_of_int); /* 3 */
