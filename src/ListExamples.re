@@ -61,13 +61,13 @@ Js.log(List.flatten(listOfLists) |> Array.of_list); /* [ 'a', 'b', 'c', 'd', 'e'
 /* ## Iterators
  */
 /* Iterate over list */
-List.iter((element) => Js.log(element), listOfStrings); /*
+List.iter(element => Js.log(element), listOfStrings); /*
 a
 b
 c
 */
 
-listOfStrings |> List.iter((element) => Js.log(element));
+listOfStrings |> List.iter(element => Js.log(element));
 
 /* Iterate over list with (index, value) */
 List.iteri(
@@ -81,7 +81,7 @@ List.iteri(
 
 /* Map over list */
 let listOfStringsWithExclamation =
-  List.map((element) => element ++ "!", listOfStrings);
+  List.map(element => element ++ "!", listOfStrings);
 
 Js.log(listOfStringsWithExclamation |> Array.of_list); /* [ 'a!', 'b!', 'c!' ] */
 
@@ -96,7 +96,7 @@ Js.log(listOfStringsWithExclamation |> Array.of_list); /* [ '0: a', '1: b', '2: 
 
 /* Map and reverse the result; faster than List.rev(List.map(list)) */
 let reversedListOfStringsWithExclamation =
-  List.rev_map((element) => element ++ "!", listOfStrings);
+  List.rev_map(element => element ++ "!", listOfStrings);
 
 Js.log(reversedListOfStringsWithExclamation |> Array.of_list); /* [ 'c!', 'b!', 'a!' ] */
 
@@ -176,17 +176,17 @@ Js.log(
 ); /* cf-be-ad- */
 
 /* for_all; compare Array.prototype.every */
-Js.log(List.for_all((str) => str === "a", listOfStrings) |> string_of_bool); /* false */
+Js.log(List.for_all(str => str === "a", listOfStrings) |> string_of_bool); /* false */
 
-Js.log(listOfStrings |> List.for_all((str) => str === "a")); /* false */
+Js.log(listOfStrings |> List.for_all(str => str === "a")); /* false */
 
-Js.log(List.for_all((str) => str !== "d", listOfStrings) |> string_of_bool); /* true */
+Js.log(List.for_all(str => str !== "d", listOfStrings) |> string_of_bool); /* true */
 
 /* exists: compare Array.prototype.some */
-listOfStrings |> List.exists((str) => str === "a") |> string_of_bool |> Js.log; /* true */
+listOfStrings |> List.exists(str => str === "a") |> string_of_bool |> Js.log; /* true */
 
 /* Same as */
-Js.log(string_of_bool(List.exists((str) => str === "a", listOfStrings)));
+Js.log(string_of_bool(List.exists(str => str === "a", listOfStrings)));
 
 /* TODO: for_all2
  */
@@ -203,19 +203,19 @@ Js.log(string_of_bool(List.mem("z", listOfStrings))); /* false */
 /* TODO: memq
  */
 /* find */
-listOfNumbers |> List.find((element) => element > 2) |> string_of_int |> Js.log; /* 3 */
+listOfNumbers |> List.find(element => element > 2) |> string_of_int |> Js.log; /* 3 */
 
 /* TODO: show exception
  */
 /* filter */
-listOfNumbers |> List.filter((element) => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
+listOfNumbers |> List.filter(element => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
 
 /* find_all; same as filter */
-listOfNumbers |> List.find_all((element) => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
+listOfNumbers |> List.find_all(element => element > 1) |> Array.of_list |> Js.log; /* [ 2, 3 ] */
 
 /* partition; results in two lists, matching and not matching */
 let (matching, notMatching) =
-  listOfNumbers |> List.partition((element) => element > 1);
+  listOfNumbers |> List.partition(element => element > 1);
 
 matching |> Array.of_list |> Js.log; /* [ 2, 3 ] */
 

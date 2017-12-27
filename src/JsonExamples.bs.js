@@ -41,10 +41,13 @@ var json$1 = Json.parseOrRaise(json2);
 
 console.log(Json_decode.list(decodeGame, json$1));
 
+var json3 = " {\n  \"event\": \"Christmas\",\n  \"game\": {\n    \"name\": \"Monopoly\",\n    \"players\": 6\n  }\n } ";
+
 exports.gameToJs    = gameToJs;
 exports.gameFromJs  = gameFromJs;
 exports.json        = json;
 exports.decodeGame  = decodeGame;
 exports.json2       = json2;
 exports.decodeGames = decodeGames;
+exports.json3       = json3;
 /*  Not a pure module */
