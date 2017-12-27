@@ -25,7 +25,42 @@ console.log(thing1);
 
 console.log(thingToJs(thing1));
 
-exports.thingToJs   = thingToJs;
-exports.thingFromJs = thingFromJs;
-exports.thing1      = thing1;
+function hockeyToJs(param) {
+  return param + 0 | 0;
+}
+
+function hockeyFromJs(param) {
+  if (param <= 2 && 0 <= param) {
+    return /* Some */[param - 0 | 0];
+  } else {
+    return /* None */0;
+  }
+}
+
+console.log(1);
+
+var match = hockeyFromJs(2);
+
+if (match) {
+  switch (match[0]) {
+    case 0 : 
+        console.log("Ice hockey");
+        break;
+    case 1 : 
+        console.log("Inline hockey");
+        break;
+    case 2 : 
+        console.log("Field hockey");
+        break;
+    
+  }
+} else {
+  console.log("received something wrong from the JS side");
+}
+
+exports.thingToJs    = thingToJs;
+exports.thingFromJs  = thingFromJs;
+exports.thing1       = thing1;
+exports.hockeyToJs   = hockeyToJs;
+exports.hockeyFromJs = hockeyFromJs;
 /*  Not a pure module */
